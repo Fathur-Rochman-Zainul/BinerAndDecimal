@@ -1,0 +1,66 @@
+import java.util.Scanner;
+/**
+ *
+ * @author Fathur Rochman Z
+ */
+public class BinerAndDecimal {
+    void decimalToBiner(int a) {
+        if (a > 1) {
+            decimalToBiner(a / 2);
+        }
+        System.out.print(a % 2);
+        }
+ String binerToDecimal(String bilangan) {
+            String[] binerReverse = new String[bilangan.length()];
+            double resultDecimal = 0;
+            
+            //reverse
+            int n = 0;
+            for (int i = bilangan.length() - 1; i >= 0; i--) {
+                binerReverse[n] = String.valueOf(bilangan.charAt(i));
+                n++;
+            }
+            
+            //pangkatkan
+            for (int i = 0; i < binerReverse.length; i++) {
+                if (Integer.parseInt(binerReverse[i]) == 1) {
+                    resultDecimal += Math.pow(2, i);
+                }
+            }
+            return String.valueOf(resultDecimal);
+            
+        }    
+    public static void main (String[] args) {
+        BinerAndDecimal bd = new BinerAndDecimal();
+        System.out.println ("==== Konversi Bilangan ====");
+        System.out.println (" 1. Decimal ke Biner\n 2. Biner ke Decimal\n");
+        
+        System.out.print ("Masukan pilihan: ");
+        Scanner input = new Scanner(System.in);
+        
+        switch (input.nextInt()) {
+            case 1 : 
+                System.out.println ("\n= Decimal ke Biner =");
+                System.out.print("Masukan bil.Decimal: ");
+                Scanner desimal = new Scanner(System.in);
+                String biner =
+                        Integer.toBinaryString(desimal.nextInt());
+                System.out.println("Hasil: "+biner);
+                // int inputInt = desimal.nextInt();
+                // System.out.print("Hasil: ");
+                // bd.decimalToBiner (inputInt);
+                System.out.print("\n");
+                break;
+            case 2 :
+                System.out.println("\n= Biner ke Desimal =");
+                System.out.print("Masukkan bil.Biner: ");
+                Scanner inputBiner = new Scanner (System.in);
+                int result = Integer.parseInt(inputBiner.nextLine(), 2); //radix 2 (biner)
+                System.out.println("Hasil: "+result);
+                // System.out.println("Desimal: " + bd.binerToDecimal (inputBiner.nextLine()));
+                break;
+            default:
+        } 
+    }
+}
+//jika dibuat disambungkan dengan switch case
